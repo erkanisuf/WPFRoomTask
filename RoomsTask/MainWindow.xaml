@@ -1,0 +1,63 @@
+﻿<Window x:Class="RoomsTask.MainWindow"
+              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+        Background="{DynamicResource MaterialDesignPaper}"
+        TextElement.FontWeight="Medium"
+        TextElement.FontSize="14"
+        FontFamily="{materialDesign:MaterialDesignFont}"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:RoomsTask"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    <Grid Margin="28,11,24,10">
+        <Grid Margin="204,12,0,27" Background="#FF677C66" >
+            <Grid.RowDefinitions>
+                <RowDefinition Height="120" />
+                <RowDefinition Height="120" />
+                <RowDefinition Height="120" />
+            </Grid.RowDefinitions>
+            <materialDesign:Card  HorizontalAlignment="Center" Height="100" VerticalAlignment="Center" Width="524" RenderTransformOrigin="0.5,0.5">
+                <materialDesign:Card.Background>
+                    <ImageBrush ImageSource="/photo-1556911220-bff31c812dba.jpg" Stretch="UniformToFill"/>
+                </materialDesign:Card.Background>
+            </materialDesign:Card>
+            <materialDesign:Card  HorizontalAlignment="Left" Height="79" Margin="21,0,0,0" VerticalAlignment="Center" Width="276"/>
+            <ToggleButton Margin="46,50,437,50" />
+            
+            
+            <materialDesign:Card Grid.Row="1" HorizontalAlignment="Center" Height="100" VerticalAlignment="Center" Width="524" RenderTransformOrigin="0.5,0.5">
+                <materialDesign:Card.Background>
+                    <ImageBrush ImageSource="/gray-living-room-01.jpg" Stretch="UniformToFill"/>
+                </materialDesign:Card.Background>
+            </materialDesign:Card>
+            <materialDesign:Card Grid.Row="1" HorizontalAlignment="Left" Height="79" Margin="21,0,0,0" VerticalAlignment="Center" Width="276"/>
+            <ToggleButton Grid.Row="1" Margin="46,50,437,50" Background="#FF3AB756" />
+
+            <materialDesign:Card Grid.Row="2" HorizontalAlignment="Center" Height="100" VerticalAlignment="Center" Width="524" RenderTransformOrigin="0.5,0.5">
+                <materialDesign:Card.Background>
+                    <ImageBrush ImageSource="/saunakokonaisuus.jpg" Stretch="Fill"/>
+                </materialDesign:Card.Background>
+            </materialDesign:Card>
+            <materialDesign:Card Grid.Row="2" HorizontalAlignment="Left" Height="79" Margin="21,0,0,0" VerticalAlignment="Center" Width="276"/>
+            <ToggleButton Grid.Row="2" Margin="46,50,437,50" />
+        </Grid>
+
+
+
+
+
+        <Grid Margin="0,0,584,10" Background="#FF397823" >
+            <Grid.RowDefinitions>
+
+                <RowDefinition Height="120" />
+
+            </Grid.RowDefinitions>
+        </Grid>
+
+
+    </Grid>
+
+</Window>

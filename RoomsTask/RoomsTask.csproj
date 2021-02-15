@@ -1,0 +1,27 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <UseWPF>true</UseWPF>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="gray-living-room-01.jpg" />
+    <None Remove="photo-1556911220-bff31c812dba.jpg" />
+    <None Remove="saunakokonaisuus.jpg" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="MaterialDesignColors" Version="2.0.0" />
+    <PackageReference Include="MaterialDesignThemes" Version="4.0.0" />
+    <PackageReference Include="ShowMeTheXAML" Version="2.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="gray-living-room-01.jpg" />
+    <Resource Include="photo-1556911220-bff31c812dba.jpg" />
+    <Resource Include="saunakokonaisuus.jpg" />
+  </ItemGroup>
+
+</Project>
