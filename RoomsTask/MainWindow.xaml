@@ -10,6 +10,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:RoomsTask"
+        
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid Margin="28,11,24,10">
@@ -19,42 +20,140 @@
                 <RowDefinition Height="120" />
                 <RowDefinition Height="120" />
             </Grid.RowDefinitions>
+
             <materialDesign:Card  HorizontalAlignment="Center" Height="100" VerticalAlignment="Center" Width="524" RenderTransformOrigin="0.5,0.5">
                 <materialDesign:Card.Background>
                     <ImageBrush ImageSource="/photo-1556911220-bff31c812dba.jpg" Stretch="UniformToFill"/>
                 </materialDesign:Card.Background>
             </materialDesign:Card>
             <materialDesign:Card  HorizontalAlignment="Left" Height="79" Margin="21,0,0,0" VerticalAlignment="Center" Width="276"/>
-            <ToggleButton Margin="46,50,437,50" />
-            
-            
+            <ToggleButton x:Name="toggleKitchen" Margin="47,74,436,26" Checked="lightOnKitchen"  Unchecked="kitchenLightOff" />
+            <Slider
+                 x:Name="kitchenSlider"
+                 ValueChanged="Kitchen_Light_Value"
+                Grid.Row="0"
+                    Orientation="Horizontal"
+                    Minimum="0"
+                    Maximum="100"
+                    Style="{StaticResource MaterialDesignDiscreteSlider}" 
+                    ToolTip="MaterialDesignDiscreteSlider" Margin="109,39,395,23" Foreground="#FF75B975"/>
+            <materialDesign:PackIcon x:Name="lightKitchen"   Grid.Row="0" Kind="Lightbulbs" Foreground="#FF858785" Margin="32,68,0,0" Height="28" Width="21"/>
+            <materialDesign:PackIcon   Kind="BulbGroupOutline"  Margin="199,32,0,0" Height="52" Width="73" Grid.Row="0">
+                <materialDesign:PackIcon.Foreground>
+                    <SolidColorBrush  x:Name="powerKitchen" Color="#FFF9AE0D" Opacity="0"/>
+                </materialDesign:PackIcon.Foreground>
+            </materialDesign:PackIcon>
+            <TextBlock x:Name="KitchenTextLight"  HorizontalAlignment="Left" Height="15" Margin="173,79,0,0" Text="Light power: 0/100%" TextWrapping="Wrap" VerticalAlignment="Top" Width="138" FontFamily="Franklin Gothic Book" FontWeight="Bold" Foreground="#FFA7ACA6" FontSize="10" Grid.Row="0"/>
+            <Label Content="Kitchen" Foreground="#FF57288F" FontFamily="Agency FB" FontSize="18" Margin="32,26,395,48" FontWeight="Normal" FontStyle="Normal"/>
+
+
+
+
             <materialDesign:Card Grid.Row="1" HorizontalAlignment="Center" Height="100" VerticalAlignment="Center" Width="524" RenderTransformOrigin="0.5,0.5">
                 <materialDesign:Card.Background>
                     <ImageBrush ImageSource="/gray-living-room-01.jpg" Stretch="UniformToFill"/>
                 </materialDesign:Card.Background>
             </materialDesign:Card>
             <materialDesign:Card Grid.Row="1" HorizontalAlignment="Left" Height="79" Margin="21,0,0,0" VerticalAlignment="Center" Width="276"/>
-            <ToggleButton Grid.Row="1" Margin="46,50,437,50" Background="#FF3AB756" />
+            <ToggleButton  x:Name="toggleLivingRoom" Grid.Row="1" Margin="47,74,436,26" Unchecked="livingRoomOff" Checked="livingRoom" />
+            <Slider
+                x:Name="livingRoomSlider"
+                ValueChanged="LivingRoom_Light_Value"
+                Grid.Row="1"
+                    Orientation="Horizontal"
+                    Minimum="0"
+                    Maximum="100"
+                    Style="{StaticResource MaterialDesignDiscreteSlider}" 
+                    ToolTip="MaterialDesignDiscreteSlider" Margin="109,39,395,23" Foreground="#FF75B975"/>
+            <materialDesign:PackIcon x:Name="livingRoomStatus"  Grid.Row="1" Kind="Lightbulbs" Foreground="#FF858785" Margin="32,68,0,0" Height="28" Width="21"/>
+            <materialDesign:PackIcon    Kind="BulbGroupOutline"  Margin="199,32,0,0" Height="52" Width="73" Grid.Row="1">
+                <materialDesign:PackIcon.Foreground>
+                    <SolidColorBrush  x:Name="powerlivingRoom" Color="#FFF9AE0D" Opacity="0"/>
+                </materialDesign:PackIcon.Foreground>
+            </materialDesign:PackIcon>
+            <TextBlock x:Name="livingRoomTextLight" HorizontalAlignment="Left" Height="15" Margin="173,79,0,0" Text="Light power: 0/100%" TextWrapping="Wrap" VerticalAlignment="Top" Width="138" FontFamily="Franklin Gothic Book" FontWeight="Bold" Foreground="#FFA7ACA6" FontSize="10" Grid.Row="1"/>
+            <Label Content="Living room" Grid.Row="1" Foreground="#FF57288F" FontFamily="Agency FB" FontSize="18" Margin="32,26,395,48" FontWeight="Normal" FontStyle="Normal"/>
 
-            <materialDesign:Card Grid.Row="2" HorizontalAlignment="Center" Height="100" VerticalAlignment="Center" Width="524" RenderTransformOrigin="0.5,0.5">
+
+
+
+
+
+            <materialDesign:Card Grid.Row="2" HorizontalAlignment="Center" Height="100" VerticalAlignment="Center" Width="524" RenderTransformOrigin="0.5,0.5" >
+
                 <materialDesign:Card.Background>
-                    <ImageBrush ImageSource="/saunakokonaisuus.jpg" Stretch="Fill"/>
+                    <ImageBrush ImageSource="/saunakokonaisuus.jpg" Stretch="Fill" Opacity="1"/>
+
                 </materialDesign:Card.Background>
+
+
             </materialDesign:Card>
-            <materialDesign:Card Grid.Row="2" HorizontalAlignment="Left" Height="79" Margin="21,0,0,0" VerticalAlignment="Center" Width="276"/>
-            <ToggleButton Grid.Row="2" Margin="46,50,437,50" />
+            <Grid Grid.Row="2">
+                
+                <materialDesign:Card Grid.Row="1" HorizontalAlignment="Left" Height="79" Margin="21,0,0,0" VerticalAlignment="Center" Width="276">
+                </materialDesign:Card>
+
+                <ToggleButton x:Name="saunaRoom" Margin="47,74,436,26" Unchecked="saunaRoomOff" Checked="saunaRoomOn"  />
+                <Slider x:Name="saunaSlider"
+                ValueChanged="Sauna_Light_Value"
+                    Orientation="Horizontal"
+                    Minimum="0"
+                    Maximum="100"
+                    Style="{StaticResource MaterialDesignDiscreteSlider}" 
+                    ToolTip="MaterialDesignDiscreteSlider" Margin="109,39,395,23" Foreground="#FF75B975"/>
+                <materialDesign:PackIcon  x:Name="saunaRoomStatus"  Kind="Lightbulbs" Foreground="#FF858785" Margin="32,68,0,0" Height="28" Width="21"/>
+
+                <materialDesign:PackIcon    Kind="BulbGroupOutline"  Margin="199,32,0,0" Height="52" Width="73">
+                    <materialDesign:PackIcon.Foreground>
+                        <SolidColorBrush  x:Name="powerLightSauna" Color="#FFF9AE0D" Opacity="0"/>
+                    </materialDesign:PackIcon.Foreground>
+                </materialDesign:PackIcon>
+                <TextBlock x:Name="saunaTextLight" HorizontalAlignment="Left" Height="15" Margin="173,79,0,0" Text="Light power: 0/100%" TextWrapping="Wrap" VerticalAlignment="Top" Width="138" FontFamily="Franklin Gothic Book" FontWeight="Bold" Foreground="#FFA7ACA6" FontSize="10"/>
+                <Label Content="Sauna" Foreground="#FF57288F" FontFamily="Agency FB" FontSize="18" Margin="32,26,395,48" FontWeight="Normal" FontStyle="Normal"/>
+
+
+
+
+
+            </Grid>
         </Grid>
 
 
 
 
 
-        <Grid Margin="0,0,584,10" Background="#FF397823" >
+        <Grid Margin="0,0,584,10" Background="#FF487A37" >
             <Grid.RowDefinitions>
-
-                <RowDefinition Height="120" />
-
+                <RowDefinition Height="200" />
+                <RowDefinition Height="200" />
             </Grid.RowDefinitions>
+
+            <Grid Grid.Row="0">
+                <Label Content="Current temperature" HorizontalAlignment="Left" Height="25" Margin="33,16,0,0" VerticalAlignment="Top" Width="134" Foreground="#DDFFFFFF" FontFamily="Agency FB" FontSize="14"/>
+                <TextBlock HorizontalAlignment="Center" Height="60" Margin="0,62,0,0" Text="40°C " TextWrapping="Wrap" VerticalAlignment="Top" Width="98" FontFamily="Agency FB" FontSize="56" Foreground="White" />
+                <TextBox  x:Name="inputTemp" GotFocus="inputClear" HorizontalAlignment="Left" Height="28" Margin="40,126,0,0" Text="°C degree" TextWrapping="Wrap" VerticalAlignment="Top" Width="59" FontFamily="Agency FB" Foreground="White" BorderBrush="#89FFFFFF" CaretBrush="#FFB7793A"/>
+
+                <Button
+                        Style="{StaticResource MaterialDesignFloatingActionMiniButton}"
+                        HorizontalAlignment="Left"
+                        ToolTip="MaterialDesignFloatingActionMiniButton" Background="#FF623AB7" Margin="92,120,0,40">
+                    <materialDesign:PackIcon
+                            Kind="ArchiveEdit" Foreground="White" Height="20" Width="20"
+                             />
+                </Button>
+                <Slider
+                        TickFrequency="10"
+                        TickPlacement="TopLeft"
+                        Orientation="Horizontal"
+                        Minimum="0"
+                        Maximum="50"
+                        Value="30"
+                        IsEnabled="True" Margin="0,40,0,6"/>
+
+
+
+            </Grid>
+
         </Grid>
 
 
