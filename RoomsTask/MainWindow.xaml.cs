@@ -24,14 +24,15 @@ namespace RoomsTask
         Room kitchen = new Room();
         Room livingroom = new Room();
         Room saunaroom = new Room();
-
+        Thermos house = new Thermos();
 
         public MainWindow()
         {
             InitializeComponent();
-           /* var icon = new PackIcon { Kind = PackIconKind.SmileyHappy };
-            putka.Kind = PackIconKind.SmileyHappy;*/
-
+            /* var icon = new PackIcon { Kind = PackIconKind.SmileyHappy };
+             putka.Kind = PackIconKind.SmileyHappy;*/
+            house.setTemperature(25);
+            tempBar.Text = house.getTemperature().ToString() + "°C";
         }
 
         private void lightOnKitchen(object sender, RoutedEventArgs e)
@@ -268,11 +269,36 @@ namespace RoomsTask
 
 
 
-
+        // Left Interface
         private void inputClear(object sender, RoutedEventArgs e) {
             inputTemp.Text = string.Empty;
         }
+
+        private void House_temperature(object sender,
+             RoutedPropertyChangedEventArgs<double> e)
+        {
+
+            var slider = sender as Slider;
+
+            house.setTemperature((int)Math.Round(slider.Value)); // double to int
+            tempBar.Text = house.getTemperature().ToString() + "°C";
+
+        }
+
+
+
+
+
+
+
+
+
+
+
+
     }
+
+
 
 
 }

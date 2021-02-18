@@ -130,7 +130,7 @@
 
             <Grid Grid.Row="0">
                 <Label Content="Current temperature" HorizontalAlignment="Left" Height="25" Margin="33,16,0,0" VerticalAlignment="Top" Width="134" Foreground="#DDFFFFFF" FontFamily="Agency FB" FontSize="14"/>
-                <TextBlock HorizontalAlignment="Center" Height="60" Margin="0,62,0,0" Text="40°C " TextWrapping="Wrap" VerticalAlignment="Top" Width="98" FontFamily="Agency FB" FontSize="56" Foreground="White" />
+                <TextBlock x:Name="tempBar" HorizontalAlignment="Center" Height="60" Margin="0,62,0,0" Text="40°C " TextWrapping="Wrap" VerticalAlignment="Top" Width="98" FontFamily="Agency FB" FontSize="56" Foreground="White" />
                 <TextBox  x:Name="inputTemp" GotFocus="inputClear" HorizontalAlignment="Left" Height="28" Margin="40,126,0,0" Text="°C degree" TextWrapping="Wrap" VerticalAlignment="Top" Width="59" FontFamily="Agency FB" Foreground="White" BorderBrush="#89FFFFFF" CaretBrush="#FFB7793A"/>
 
                 <Button
@@ -142,6 +142,7 @@
                              />
                 </Button>
                 <Slider
+                    ValueChanged="House_temperature"
                         TickFrequency="10"
                         TickPlacement="TopLeft"
                         Orientation="Horizontal"
