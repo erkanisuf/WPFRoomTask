@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Timers;
+
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -13,6 +15,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Windows.Threading;
 
 namespace RoomsTask
 {
@@ -25,6 +28,9 @@ namespace RoomsTask
         Room livingroom = new Room();
         Room saunaroom = new Room();
         Thermos house = new Thermos();
+        Sauna sauna = new Sauna();
+        DispatcherTimer timerTempUp = new DispatcherTimer();
+        DispatcherTimer timerTempDown = new DispatcherTimer();
 
         public MainWindow()
         {
@@ -33,7 +39,14 @@ namespace RoomsTask
              putka.Kind = PackIconKind.SmileyHappy;*/
             house.setTemperature(25);
             tempBar.Text = house.getTemperature().ToString() + "°C";
+            sauna.setSaunaTemp(house.getTemperature());
+            saunaPowerTemp.Text = sauna.getSaunaTemp().ToString();
+
+
+
+
         }
+        
 
         private void lightOnKitchen(object sender, RoutedEventArgs e)
         {
@@ -286,16 +299,76 @@ namespace RoomsTask
         }
 
 
+        private void updateHouseTemperature(object sender, RoutedEventArgs e) {
 
 
+            // DO Validation !!
+            house.setTemperature(Int32.Parse(inputTemp.Text)); 
+            tempBar.Text = house.getTemperature().ToString() + "°C";
+            inputTemp.Text = "";
+        }
 
+        //turn on sauna temp
+        private void turnOnSauna(object sender, RoutedEventArgs e)
+        {
+            saunaPowerIcon.Kind = PackIconKind.PowerPlugOutline;
+            saunaPowerIcon.Foreground = System.Windows.Media.Brushes.Green;
+            saunaPowerTemp.Foreground = System.Windows.Media.Brushes.Green;
+            saunaOnOff.Text = "ON";
+            sauna.setSaunaTemp(house.getTemperature());
+            saunaPowerTemp.Text = sauna.getSaunaTemp().ToString();
 
+            timerTempDown.Stop();
+            timerTempUp.Interval = TimeSpan.FromSeconds(1);
+            timerTempUp.Tick += new System.EventHandler(increaseTemperature);
+            timerTempUp.Start();
+        }
 
+        private void turnOffSauna(object sender, RoutedEventArgs e)
+        {
 
+            saunaPowerIcon.Kind = PackIconKind.PowerPlugOffOutline;
+            saunaPowerIcon.Foreground = System.Windows.Media.Brushes.Red;
+            saunaPowerTemp.Foreground = new BrushConverter().ConvertFromString("#FFA7ACA6") as SolidColorBrush;
+            saunaPowerTemp.Text = sauna.getSaunaTemp().ToString();
+            saunaOnOff.Text = "OFF";
+            timerTempUp.Stop();
 
+            timerTempDown.Interval = TimeSpan.FromSeconds(1);
+            timerTempDown.Tick += new System.EventHandler(decreaseTemperature);
+            if (sauna.getSaunaTemp() == house.getTemperature())
+            {
+                timerTempDown.Stop();
+            }
+            else {
+                timerTempDown.Start();
+            }
+                
+        }
 
+        public void increaseTemperature(object sender, EventArgs e)
+        {
 
+            sauna.incrementSaunaTemp();
+            saunaPowerTemp.Text = sauna.getSaunaTemp().ToString() + "°C";
+        }
+        public void decreaseTemperature(object sender, EventArgs e)
+        {
+            if (sauna.getSaunaTemp() == house.getTemperature() || sauna.getSaunaTemp() < house.getTemperature())
+            {
+                timerTempDown.Stop();
+            }
+            else {
+                sauna.decreaseSaunaTemp();
+            }
 
+            saunaPowerTemp.Text = sauna.getSaunaTemp().ToString() + "°C";
+
+        }
+        private void test(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show(sauna.getSaunaTemp().ToString());
+        }
     }
 
 

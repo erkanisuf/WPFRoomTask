@@ -79,7 +79,7 @@
 
 
 
-            <materialDesign:Card Grid.Row="2" HorizontalAlignment="Center" Height="100" VerticalAlignment="Center" Width="524" RenderTransformOrigin="0.5,0.5" >
+            <materialDesign:Card Grid.Row="2" HorizontalAlignment="Center" Height="148" VerticalAlignment="Center" Width="524" RenderTransformOrigin="0.5,0.5" >
 
                 <materialDesign:Card.Background>
                     <ImageBrush ImageSource="/saunakokonaisuus.jpg" Stretch="Fill" Opacity="1"/>
@@ -88,8 +88,8 @@
 
 
             </materialDesign:Card>
-            <Grid Grid.Row="2">
-                
+            <Grid Grid.Row="2" Margin="-1,0,1,0">
+
                 <materialDesign:Card Grid.Row="1" HorizontalAlignment="Left" Height="79" Margin="21,0,0,0" VerticalAlignment="Center" Width="276">
                 </materialDesign:Card>
 
@@ -110,6 +110,12 @@
                 </materialDesign:PackIcon>
                 <TextBlock x:Name="saunaTextLight" HorizontalAlignment="Left" Height="15" Margin="173,79,0,0" Text="Light power: 0/100%" TextWrapping="Wrap" VerticalAlignment="Top" Width="138" FontFamily="Franklin Gothic Book" FontWeight="Bold" Foreground="#FFA7ACA6" FontSize="10"/>
                 <Label Content="Sauna" Foreground="#FF57288F" FontFamily="Agency FB" FontSize="18" Margin="32,26,395,48" FontWeight="Normal" FontStyle="Normal"/>
+                <materialDesign:Card HorizontalAlignment="Left" Height="80" Margin="302,0,0,0" VerticalAlignment="Center" Width="74" />
+                <!-- Sauna FUncs-->
+                <ToggleButton x:Name="saunaTurnOnbtn" Margin="323,74,161,26" Unchecked="turnOffSauna" Checked="turnOnSauna"  />
+                <materialDesign:PackIcon  x:Name="saunaPowerIcon"  Kind="PowerPlugOutline" Foreground="#FF858785" Margin="306,68,0,0" Height="28" Width="21"/>
+                <TextBlock x:Name="saunaPowerTemp" HorizontalAlignment="Left" Height="32" Margin="310,38,0,0" Text="    OFF" TextWrapping="Wrap" VerticalAlignment="Top" Width="68" FontFamily="Agency FB" FontWeight="Bold" Foreground="#FFA7ACA6" FontSize="24"/>
+                <TextBlock x:Name="saunaOnOff" HorizontalAlignment="Left" Height="12" Margin="308,23,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="33" FontFamily="Agency FB" FontWeight="Bold" Foreground="#FFA7ACA6" FontSize="8"/>
 
 
 
@@ -134,6 +140,7 @@
                 <TextBox  x:Name="inputTemp" GotFocus="inputClear" HorizontalAlignment="Left" Height="28" Margin="40,126,0,0" Text="°C degree" TextWrapping="Wrap" VerticalAlignment="Top" Width="59" FontFamily="Agency FB" Foreground="White" BorderBrush="#89FFFFFF" CaretBrush="#FFB7793A"/>
 
                 <Button
+                    Click="updateHouseTemperature"
                         Style="{StaticResource MaterialDesignFloatingActionMiniButton}"
                         HorizontalAlignment="Left"
                         ToolTip="MaterialDesignFloatingActionMiniButton" Background="#FF623AB7" Margin="92,120,0,40">
@@ -154,6 +161,7 @@
 
 
             </Grid>
+            <Button  Content="Button" HorizontalAlignment="Left" Height="54" Margin="25,46,0,0" Grid.Row="1" VerticalAlignment="Top" Width="57" Click="test"/>
 
         </Grid>
 
