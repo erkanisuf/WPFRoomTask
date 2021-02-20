@@ -8,16 +8,36 @@ namespace RoomsTask
     class Sauna
     {
 
+        DispatcherTimer timerTempUp = new DispatcherTimer();
+        DispatcherTimer timerTempDown = new DispatcherTimer();
         public bool saunaStatus { get; set; }
         private double saunaTemp { get; set; }
+
 
         public void saunaOn()
         {
             saunaStatus = true;
+            if (saunaTemp < 80)
+            {
+                saunaTemp += 0.5;
+            }
+               
         }
-        public void saunaOff()
+        public void saunaOff(double props)
         {
             saunaStatus = false;
+
+            if (saunaTemp > props)
+            {
+                saunaTemp--;
+            }
+            else
+            {
+                saunaTemp = props;
+            }
+
+
+
         }
 
         public double  getSaunaTemp()
@@ -25,19 +45,12 @@ namespace RoomsTask
             return saunaTemp;
         }
 
-        public void setSaunaTemp(int props)
+        public void setSaunaTemp(double props)
         {
             saunaTemp = props;
 
         }
 
-        public void incrementSaunaTemp()
-        {
-            saunaTemp += 0.5;
-        }
-
-        public void decreaseSaunaTemp() {
-            saunaTemp -= 1;
-        }
+        
     }
 }

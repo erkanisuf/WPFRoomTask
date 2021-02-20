@@ -14,9 +14,11 @@
 
   <ItemGroup>
     <PackageReference Include="EcoCore" Version="7.0.0.12928" />
+    <PackageReference Include="FluentValidation" Version="9.5.1" />
     <PackageReference Include="MaterialDesignColors" Version="2.0.0" />
     <PackageReference Include="MaterialDesignThemes" Version="4.0.0" />
     <PackageReference Include="ShowMeTheXAML" Version="2.0.0" />
+    <PackageReference Include="System.Speech" Version="5.0.0" />
   </ItemGroup>
 
   <ItemGroup>

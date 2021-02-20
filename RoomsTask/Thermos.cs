@@ -4,10 +4,10 @@ using System.Text;
 
 namespace RoomsTask
 {
-    class Thermos
+    public class Thermos
     {
         private int _currentTemperature { get; set; }
-
+        private int maxTemp = 50;
 
 
         public void setTemperature(int value) {

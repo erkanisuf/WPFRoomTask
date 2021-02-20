@@ -115,7 +115,7 @@
                 <ToggleButton x:Name="saunaTurnOnbtn" Margin="323,74,161,26" Unchecked="turnOffSauna" Checked="turnOnSauna"  />
                 <materialDesign:PackIcon  x:Name="saunaPowerIcon"  Kind="PowerPlugOutline" Foreground="#FF858785" Margin="306,68,0,0" Height="28" Width="21"/>
                 <TextBlock x:Name="saunaPowerTemp" HorizontalAlignment="Left" Height="32" Margin="310,38,0,0" Text="    OFF" TextWrapping="Wrap" VerticalAlignment="Top" Width="68" FontFamily="Agency FB" FontWeight="Bold" Foreground="#FFA7ACA6" FontSize="24"/>
-                <TextBlock x:Name="saunaOnOff" HorizontalAlignment="Left" Height="12" Margin="308,23,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="33" FontFamily="Agency FB" FontWeight="Bold" Foreground="#FFA7ACA6" FontSize="8"/>
+                <TextBlock x:Name="saunaOnOff" HorizontalAlignment="Left" Height="12" Margin="308,23,0,0" Text="OFF" TextWrapping="Wrap" VerticalAlignment="Top" Width="33" FontFamily="Agency FB" FontWeight="Bold" Foreground="#FFA7ACA6" FontSize="8"/>
 
 
 
@@ -136,8 +136,8 @@
 
             <Grid Grid.Row="0">
                 <Label Content="Current temperature" HorizontalAlignment="Left" Height="25" Margin="33,16,0,0" VerticalAlignment="Top" Width="134" Foreground="#DDFFFFFF" FontFamily="Agency FB" FontSize="14"/>
-                <TextBlock x:Name="tempBar" HorizontalAlignment="Center" Height="60" Margin="0,62,0,0" Text="40°C " TextWrapping="Wrap" VerticalAlignment="Top" Width="98" FontFamily="Agency FB" FontSize="56" Foreground="White" />
-                <TextBox  x:Name="inputTemp" GotFocus="inputClear" HorizontalAlignment="Left" Height="28" Margin="40,126,0,0" Text="°C degree" TextWrapping="Wrap" VerticalAlignment="Top" Width="59" FontFamily="Agency FB" Foreground="White" BorderBrush="#89FFFFFF" CaretBrush="#FFB7793A"/>
+                <TextBlock x:Name="tempBar" HorizontalAlignment="Center" Height="60" Margin="0,62,0,0" Text="30°C " TextWrapping="Wrap" VerticalAlignment="Top" Width="98" FontFamily="Agency FB" FontSize="56" Foreground="White" />
+                <TextBox  x:Name="inputTemp" GotFocus="inputClear" HorizontalAlignment="Left" Height="28" Margin="40,126,0,0" Text="°C degree" TextWrapping="Wrap" VerticalAlignment="Top" Width="59" FontFamily="Agency FB" Foreground="White" BorderBrush="#89FFFFFF" CaretBrush="#FFB7793A" MaxLength="2" PreviewTextInput="NumberValidationTextBox"/>
 
                 <Button
                     Click="updateHouseTemperature"
@@ -154,14 +154,16 @@
                         TickPlacement="TopLeft"
                         Orientation="Horizontal"
                         Minimum="0"
-                        Maximum="50"
+                        Maximum="35"
                         Value="30"
                         IsEnabled="True" Margin="0,40,0,6"/>
+                <TextBlock  x:Name="ErrorMsg" HorizontalAlignment="Center" Height="40" Margin="0,160,0,0" Text="TextBlock" TextWrapping="Wrap" VerticalAlignment="Top" Width="144" FontFamily="Agency FB"/>
 
 
 
             </Grid>
             <Button  Content="Button" HorizontalAlignment="Left" Height="54" Margin="25,46,0,0" Grid.Row="1" VerticalAlignment="Top" Width="57" Click="test"/>
+            
 
         </Grid>
 
