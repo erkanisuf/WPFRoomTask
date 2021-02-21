@@ -20,6 +20,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Windows.Threading;
+using System.IO;
 
 namespace RoomsTask
 {
@@ -36,6 +37,7 @@ namespace RoomsTask
         DispatcherTimer timerTempUp = new DispatcherTimer();
         DispatcherTimer timerTempDown = new DispatcherTimer();
         SpeechSynthesizer speech = new SpeechSynthesizer();
+        DispatcherTimer clock = new DispatcherTimer();
 
 
         public MainWindow()
@@ -47,14 +49,33 @@ namespace RoomsTask
             tempBar.Text = house.getTemperature().ToString() + "°C";
             sauna.setSaunaTemp(Convert.ToDouble(house.getTemperature()));
             saunaPowerTemp.Text = sauna.getSaunaTemp().ToString() + "°C";
-          
-           
+            clock.Tick += new EventHandler(Timer_Click);
+
+            clock.Interval = new TimeSpan(0, 0, 1);
+
+            clock.Start();
+
 
 
 
         }
-        
+        private void Timer_Click(object sender, EventArgs e)
 
+        {
+
+            DateTime d;
+
+            d = DateTime.Now;
+
+            myClock.Text = d.Hour + " : " + d.Minute ;
+            myClockSeconds.Text = " : " + d.Second;
+            DateTime localDate = DateTime.Now;
+            
+            myDate.Text = localDate.ToString("dd/MM/yyyy");
+            myDateName.Text = localDate.ToString("dddd");
+        }
+
+        //Kitchenlights
         private void lightOnKitchen(object sender, RoutedEventArgs e)
         {
             kitchen.lightOn();
@@ -76,9 +97,9 @@ namespace RoomsTask
                 lightKitchen.Foreground = System.Windows.Media.Brushes.Red;
                 
             }
-            
-            
-       
+
+            saveToLogs();
+
         }
 
         private void kitchenLightOff(object sender, RoutedEventArgs e)
@@ -102,8 +123,8 @@ namespace RoomsTask
                 lightKitchen.Foreground = System.Windows.Media.Brushes.Red;
 
             }
-            
-            
+
+            saveToLogs();
         }
 
 
@@ -127,12 +148,12 @@ namespace RoomsTask
             }
             powerKitchen.Opacity = value / 100;
             KitchenTextLight.Text = $"Light power: {kitchen.lightPower.ToString()}/ {slider.Maximum} %";
-
+            saveToLogs();
         }
 
 
 
-
+        //Living room lights
         private void livingRoom(object sender, RoutedEventArgs e)
         {
             livingroom.lightOn();
@@ -153,8 +174,8 @@ namespace RoomsTask
                 livingRoomStatus.Foreground = System.Windows.Media.Brushes.Red;
 
             }
-            
 
+            saveToLogs();
 
         }
 
@@ -179,7 +200,7 @@ namespace RoomsTask
                 livingRoomStatus.Foreground = System.Windows.Media.Brushes.Red;
 
             }
-            
+            saveToLogs();
 
         }
 
@@ -204,7 +225,7 @@ namespace RoomsTask
             powerlivingRoom.Opacity = value / 100;
 
             livingRoomTextLight.Text = $"Light power: { livingroom.lightPower.ToString()}/ {slider.Maximum} %";
-
+            saveToLogs();
         }
 
 
@@ -212,7 +233,7 @@ namespace RoomsTask
 
 
 
-
+        //Sauna lights
 
         private void saunaRoomOn(object sender, RoutedEventArgs e)
         {
@@ -235,7 +256,7 @@ namespace RoomsTask
 
             }
 
-
+            saveToLogs();
 
         }
 
@@ -260,7 +281,7 @@ namespace RoomsTask
                 saunaRoomStatus.Foreground = System.Windows.Media.Brushes.Red;
 
             }
-
+            saveToLogs();
 
         }
 
@@ -285,6 +306,7 @@ namespace RoomsTask
             powerLightSauna.Opacity = value / 100;
             // ... Set Window Title.
             saunaTextLight.Text =$"Light power: {saunaroom.lightPower.ToString()}/ {slider.Maximum} %";
+            saveToLogs();
         }
 
 
@@ -306,7 +328,13 @@ namespace RoomsTask
             if (sauna.getSaunaTemp() < house.getTemperature() && sauna.saunaStatus == false) {
                 sauna.setSaunaTemp(house.getTemperature());
                 saunaPowerTemp.Text = sauna.getSaunaTemp().ToString() + "°C";
+                timerTempDown.Interval = TimeSpan.FromSeconds(1);
+                timerTempDown.Tick += new System.EventHandler(decreaseTemperature);
+                timerTempUp.Stop();
+                timerTempDown.Start();
+                
             }
+            saveToLogs();
 
         }
         // Temp input validator
@@ -320,21 +348,19 @@ namespace RoomsTask
         private void updateHouseTemperature(object sender, RoutedEventArgs e) {
 
 
-            // DO Validation !!
-            /*ThermosValidator validation = new ThermosValidator();
-            var input = validation.Validate(house);*/
-
-           
 
 
             if (Int32.Parse(inputTemp.Text) >= 35  ) {
                 ErrorMsg.Text = "Max temperature is 35 °C";
-                
-                ErrorMsg.Foreground = System.Windows.Media.Brushes.Red;
+               
+                ErrorMsg.Foreground = System.Windows.Media.Brushes.White;
+                ErrorMsg.Background = System.Windows.Media.Brushes.Red;
             } else {
                 house.setTemperature(Int32.Parse(inputTemp.Text));
+                sliderTemperatureHouse.Value = house.getTemperature();
                 ErrorMsg.Text = "Temperature Changed!";
-                ErrorMsg.Foreground = System.Windows.Media.Brushes.Green;
+                ErrorMsg.Foreground = System.Windows.Media.Brushes.White;
+                ErrorMsg.Background = System.Windows.Media.Brushes.Green;
             }
              
             
@@ -346,6 +372,7 @@ namespace RoomsTask
             
             tempBar.Text = house.getTemperature().ToString() + "°C";
             inputTemp.Text = "";
+            saveToLogs();
 
         }
 
@@ -373,7 +400,8 @@ namespace RoomsTask
             timerTempUp.Tick += new System.EventHandler(increaseTemperature);
             timerTempDown.Stop();
             timerTempUp.Start();
-            
+            saveToLogs();
+
         }
 
         private void turnOffSauna(object sender, RoutedEventArgs e)
@@ -396,10 +424,10 @@ namespace RoomsTask
                 timerTempDown.Tick += new System.EventHandler(decreaseTemperature);
             timerTempUp.Stop();
             timerTempDown.Start();
-            
-           
-            
-                
+
+            saveToLogs();
+
+
         }
 
         public void increaseTemperature(object sender, EventArgs e)
@@ -407,6 +435,7 @@ namespace RoomsTask
 
             sauna.saunaOn();
             saunaPowerTemp.Text = sauna.getSaunaTemp().ToString() + "°C";
+            saveToLogs();
         }
         public void decreaseTemperature(object sender, EventArgs e)
         {
@@ -415,15 +444,55 @@ namespace RoomsTask
             
             
             saunaPowerTemp.Text = sauna.getSaunaTemp().ToString() + "°C";
+            saveToLogs();
 
         }
-        private void test(object sender, RoutedEventArgs e)
+        private void speakerStatus(object sender, RoutedEventArgs e)
         {
-            
+            //Lights status
             string kitchenStatus = kitchen.light == true ?  "ON" :  "OFF";
             speech.Speak($"Kitchen Lights are {kitchenStatus}");
-            speech.Speak($"Livingroom Lights are OFF");
+            string livingroomStatus = livingroom.light == true ? "ON" : "OFF";
+            speech.Speak($"Livingroom Lights are {livingroomStatus}");
+            string saunaroomStatus = saunaroom.light == true ? "ON" : "OFF";
+            speech.Speak($"Sauna room Lights are {saunaroomStatus}");
+            //
+            //Current house temperature
+            string currenthouseTemp = house.getTemperature().ToString() ;
+            speech.Speak($"Current house temperature is {currenthouseTemp } °C");
+            //Sauna condition
+            string saunaOnOrOff = sauna.saunaStatus == true ? "Turned ON" : "Turned OFF";
+            string saunaCurrentTemp = sauna.getSaunaTemp().ToString();
+            speech.Speak($"Sauna  is  {saunaOnOrOff  } with current temperature {saunaCurrentTemp} °C");
+
+
         }
+
+        // Log saving 
+        public void  saveToLogs()
+        {
+            string filePath = @"C:\Users\Erko\source\repos\RoomProject\RoomProject\logs.txt";
+            List<string> loglist = new List<string>();
+            loglist = File.ReadAllLines(filePath).ToList();
+            DateTime localDate = DateTime.Now;
+
+            string kitchenStatus = kitchen.light == true ? "ON" : "OFF";
+            string livingroomStatus = livingroom.light == true ? "ON" : "OFF";
+            string saunaroomStatus = saunaroom.light == true ? "ON" : "OFF";
+            string saunaStatus = sauna.saunaStatus == true ? "ON" : "OFF";
+            string newlog =$"{localDate.ToString()},{house.getTemperature().ToString()},{kitchenStatus},{livingroomStatus},{saunaroomStatus},{saunaStatus},{sauna.getSaunaTemp().ToString()}";
+            loglist.Add(newlog);
+            File.WriteAllLines(filePath, loglist);
+        }
+        //Open new Window
+        private void openLogWindow(object sender, RoutedEventArgs e)
+        {
+            
+            LogWindow logwindow = new LogWindow();
+            logwindow.Show();
+            
+        }
+
     }
 
 

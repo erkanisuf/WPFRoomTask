@@ -13,6 +13,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="Caliburn.Micro.Core" Version="3.2.0" />
     <PackageReference Include="EcoCore" Version="7.0.0.12928" />
     <PackageReference Include="FluentValidation" Version="9.5.1" />
     <PackageReference Include="MaterialDesignColors" Version="2.0.0" />

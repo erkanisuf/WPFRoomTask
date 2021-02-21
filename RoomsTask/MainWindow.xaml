@@ -12,7 +12,7 @@
         xmlns:local="clr-namespace:RoomsTask"
         
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="450" Width="800" ResizeMode="NoResize">
     <Grid Margin="28,11,24,10">
         <Grid Margin="204,12,0,27" Background="#FF677C66" >
             <Grid.RowDefinitions>
@@ -143,27 +143,61 @@
                     Click="updateHouseTemperature"
                         Style="{StaticResource MaterialDesignFloatingActionMiniButton}"
                         HorizontalAlignment="Left"
-                        ToolTip="MaterialDesignFloatingActionMiniButton" Background="#FF623AB7" Margin="92,120,0,40">
+                        ToolTip="Change temperature" Background="#FF623AB7" Margin="92,120,0,40">
                     <materialDesign:PackIcon
                             Kind="ArchiveEdit" Foreground="White" Height="20" Width="20"
                              />
                 </Button>
+
                 <Slider
+                    x:Name="sliderTemperatureHouse"
                     ValueChanged="House_temperature"
                         TickFrequency="10"
                         TickPlacement="TopLeft"
                         Orientation="Horizontal"
                         Minimum="0"
                         Maximum="35"
-                        Value="30"
-                        IsEnabled="True" Margin="0,40,0,6"/>
-                <TextBlock  x:Name="ErrorMsg" HorizontalAlignment="Center" Height="40" Margin="0,160,0,0" Text="TextBlock" TextWrapping="Wrap" VerticalAlignment="Top" Width="144" FontFamily="Agency FB"/>
+                        Value="25"
+                        IsEnabled="True" Margin="0,34,-3,138"/>
+
+                <TextBlock  x:Name="ErrorMsg" TextAlignment="Center" HorizontalAlignment="Center" Height="40" Margin="0,181,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="164" FontFamily="Agency FB" FontStyle="Normal"/>
 
 
 
             </Grid>
-            <Button  Content="Button" HorizontalAlignment="Left" Height="54" Margin="25,46,0,0" Grid.Row="1" VerticalAlignment="Top" Width="57" Click="test"/>
-            
+            <Button
+                
+                    Click="speakerStatus"
+                        Style="{StaticResource MaterialDesignFloatingActionMiniButton}"
+                        HorizontalAlignment="Left"
+                        ToolTip="Tell house status" Background="#FF623AB7" Margin="16,0,0,27" Grid.Row="1" Height="40" VerticalAlignment="Bottom">
+                <materialDesign:PackIcon
+                    
+                            Kind="AccountVoice" Foreground="White" Height="20" Width="20"
+                             />
+            </Button>
+
+            <Button
+                
+                    Click="openLogWindow"
+                        Style="{StaticResource MaterialDesignFloatingActionMiniButton}"
+                        HorizontalAlignment="Left"
+                        ToolTip="Tell house status" Background="#FF623AB7" Margin="90,0,0,25" Grid.Row="1" Height="40" VerticalAlignment="Bottom">
+                <materialDesign:PackIcon
+                    
+                            Kind="DatabaseAlertOutline" Foreground="White" Height="20" Width="20"
+                             />
+            </Button>
+            <materialDesign:Card  HorizontalAlignment="Center" Margin="0,5,0,0" Grid.Row="1" VerticalAlignment="Top" Height="80" Width="144"/>
+            <TextBlock x:Name="myClock" TextAlignment="Center" HorizontalAlignment="Left" Height="36" Margin="-6,12,0,0" Grid.Row="1" Text="23:33" TextWrapping="Wrap" VerticalAlignment="Top" Width="144" FontSize="30" FontFamily="Bahnschrift" Foreground="#FF623AB7"/>
+            <TextBlock x:Name="myClockSeconds" TextAlignment="Center" HorizontalAlignment="Left" Height="24" Margin="110,18,0,0" Grid.Row="1" Text=":15" TextWrapping="Wrap" VerticalAlignment="Top" Width="28" FontFamily="Bahnschrift" Foreground="#FF623AB7"/>
+
+            <TextBlock x:Name="myDate" TextAlignment="Center" HorizontalAlignment="Left" Height="26" Margin="24,46,0,0" Grid.Row="1" Text="19/Feb/2021" TextWrapping="Wrap" VerticalAlignment="Top" Width="112" FontFamily="Agency FB" Foreground="#FF623AB7" FontSize="18"/>
+            <TextBlock x:Name="myDateName" TextAlignment="Center" HorizontalAlignment="Left" Height="26" Margin="22,61,0,0" Grid.Row="1" Text="Saturday" TextWrapping="Wrap" VerticalAlignment="Top" Width="112" FontFamily="Agency FB" Foreground="#FF623AB7" FontSize="18"/>
+
+
+
+
 
         </Grid>
 
