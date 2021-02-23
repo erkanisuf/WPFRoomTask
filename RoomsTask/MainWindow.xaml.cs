@@ -21,6 +21,9 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Windows.Threading;
 using System.IO;
+using System.Net.Http;
+using Newtonsoft.Json;
+using System.Net.Http.Headers;
 
 namespace RoomsTask
 {
@@ -54,6 +57,9 @@ namespace RoomsTask
             clock.Interval = new TimeSpan(0, 0, 1);
 
             clock.Start();
+            test();
+
+
 
 
 
@@ -492,7 +498,38 @@ namespace RoomsTask
             logwindow.Show();
             
         }
+        //Weather API CALL - finnish soon
 
+
+        public void test()
+        {
+            HttpClient client = new HttpClient();
+
+            string URL = "http://api.openweathermap.org/data/2.5/weather?q=helsinki&appid=ae300bd9a386bccd8a3ac26676af1ec2";
+            // Add an Accept header for JSON format.
+            client.DefaultRequestHeaders.Accept.Add(
+            new MediaTypeWithQualityHeaderValue("application/json"));
+
+            // List data response.
+            HttpResponseMessage response = client.GetAsync(URL).Result;  // Blocking call! Program will wait here until a response is received or a timeout occurs.
+            if (response.IsSuccessStatusCode)
+            {
+                // Parse the response body.
+                var dataObjects = response.Content.ReadAsAsync<Weather>().Result;  //Make sure to add a reference to System.Net.Http.Formatting.dll
+                MessageBox.Show(dataObjects.main.toCelsius().ToString());
+            }
+            else
+            {
+                MessageBox.Show("error");
+            }
+
+            // Make any other calls using HttpClient here.
+
+            // Dispose once all HttpClient calls are complete. This is not necessary if the containing object will be disposed of; for example in this case the HttpClient instance will be disposed automatically when the application terminates so the following call is superfluous.
+            client.Dispose();
+
+        }
+        
     }
 
 
