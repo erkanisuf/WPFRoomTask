@@ -10,7 +10,8 @@ namespace RoomsTask
         public string name{ get; set; }
         [JsonProperty("main")]
         public Main main{ get; set; }
-
+        [JsonProperty("weather")]
+        public Clouds[] weather{ get; set; }
         
 
     }
@@ -24,6 +25,13 @@ namespace RoomsTask
             return numis;
            
         }
+
+    }
+class Clouds
+{
+    public string main { get; set; }
+    public string description { get; set; }
+        public string icon{ get; set; }
 
     }
 }

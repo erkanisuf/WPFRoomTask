@@ -128,7 +128,7 @@
 
 
 
-        <Grid Margin="0,0,584,10" Background="#FF487A37" >
+        <Grid Margin="0,0,584,0" Background="#FF487A37" >
             <Grid.RowDefinitions>
                 <RowDefinition Height="200" />
                 <RowDefinition Height="200" />
@@ -160,7 +160,16 @@
                         Value="25"
                         IsEnabled="True" Margin="0,34,-3,138"/>
 
-                <TextBlock  x:Name="ErrorMsg" TextAlignment="Center" HorizontalAlignment="Center" Height="40" Margin="0,181,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="164" FontFamily="Agency FB" FontStyle="Normal"/>
+                <TextBlock  x:Name="ErrorMsg" TextAlignment="Center" HorizontalAlignment="Center" Height="21" Margin="0,165,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="144" FontFamily="Agency FB" FontStyle="Normal" RenderTransformOrigin="0.5,0.5">
+                    <TextBlock.RenderTransform>
+                        <TransformGroup>
+                            <ScaleTransform ScaleY="1"/>
+                            <SkewTransform/>
+                            <RotateTransform/>
+                            <TranslateTransform/>
+                        </TransformGroup>
+                    </TextBlock.RenderTransform>
+                </TextBlock>
 
 
 
@@ -170,7 +179,7 @@
                     Click="speakerStatus"
                         Style="{StaticResource MaterialDesignFloatingActionMiniButton}"
                         HorizontalAlignment="Left"
-                        ToolTip="Tell house status" Background="#FF623AB7" Margin="16,0,0,27" Grid.Row="1" Height="40" VerticalAlignment="Bottom">
+                        ToolTip="Tell house status" Background="#FF623AB7" Margin="16,0,0,15" Grid.Row="1" Height="40" VerticalAlignment="Bottom">
                 <materialDesign:PackIcon
                     
                             Kind="AccountVoice" Foreground="White" Height="20" Width="20"
@@ -182,19 +191,24 @@
                     Click="openLogWindow"
                         Style="{StaticResource MaterialDesignFloatingActionMiniButton}"
                         HorizontalAlignment="Left"
-                        ToolTip="Tell house status" Background="#FF623AB7" Margin="90,0,0,25" Grid.Row="1" Height="40" VerticalAlignment="Bottom">
+                        ToolTip="Tell house status" Background="#FF623AB7" Margin="90,0,0,15" Grid.Row="1" Height="40" VerticalAlignment="Bottom">
                 <materialDesign:PackIcon
                     
                             Kind="DatabaseAlertOutline" Foreground="White" Height="20" Width="20"
                              />
             </Button>
-            <materialDesign:Card  HorizontalAlignment="Center" Margin="0,5,0,0" Grid.Row="1" VerticalAlignment="Top" Height="80" Width="144"/>
-            <TextBlock x:Name="myClock" TextAlignment="Center" HorizontalAlignment="Left" Height="36" Margin="-6,12,0,0" Grid.Row="1" Text="23:33" TextWrapping="Wrap" VerticalAlignment="Top" Width="144" FontSize="30" FontFamily="Bahnschrift" Foreground="#FF623AB7"/>
-            <TextBlock x:Name="myClockSeconds" TextAlignment="Center" HorizontalAlignment="Left" Height="24" Margin="110,18,0,0" Grid.Row="1" Text=":15" TextWrapping="Wrap" VerticalAlignment="Top" Width="28" FontFamily="Bahnschrift" Foreground="#FF623AB7"/>
+            <materialDesign:Card  HorizontalAlignment="Center" Margin="0,197,0,0" VerticalAlignment="Top" Height="63" Width="144" Grid.RowSpan="2"/>
+            <TextBlock x:Name="myClock" TextAlignment="Center" HorizontalAlignment="Left" Height="36" Text="23:33" TextWrapping="Wrap" VerticalAlignment="Top" Width="144" FontSize="30" FontFamily="Bahnschrift" Foreground="#FF623AB7" Grid.Row="1" Margin="6,0,0,0"/>
+            <TextBlock x:Name="myClockSeconds" TextAlignment="Center" HorizontalAlignment="Left" Height="24" Margin="110,10,0,0" Grid.Row="1" Text=":15" TextWrapping="Wrap" VerticalAlignment="Top" Width="28" FontFamily="Bahnschrift" Foreground="#FF623AB7"/>
 
-            <TextBlock x:Name="myDate" TextAlignment="Center" HorizontalAlignment="Left" Height="26" Margin="24,46,0,0" Grid.Row="1" Text="19/Feb/2021" TextWrapping="Wrap" VerticalAlignment="Top" Width="112" FontFamily="Agency FB" Foreground="#FF623AB7" FontSize="18"/>
-            <TextBlock x:Name="myDateName" TextAlignment="Center" HorizontalAlignment="Left" Height="26" Margin="22,61,0,0" Grid.Row="1" Text="Saturday" TextWrapping="Wrap" VerticalAlignment="Top" Width="112" FontFamily="Agency FB" Foreground="#FF623AB7" FontSize="18"/>
-           
+            <TextBlock x:Name="myDate" TextAlignment="Center" HorizontalAlignment="Left" Height="26" Margin="21,31,0,0" Grid.Row="1" Text="19/Feb/2021" TextWrapping="Wrap" VerticalAlignment="Top" Width="112" FontFamily="Agency FB" Foreground="#FF623AB7" FontSize="10"/>
+            <TextBlock x:Name="myDateName" TextAlignment="Center" HorizontalAlignment="Left" Height="26" Margin="22,41,0,0" Grid.Row="1" Text="Saturday" TextWrapping="Wrap" VerticalAlignment="Top" Width="112" FontFamily="Agency FB" Foreground="#FF623AB7" FontSize="15"/>
+            <materialDesign:Card  HorizontalAlignment="Center" Grid.Row="1" VerticalAlignment="Center" Height="63" Width="144" Background="#FF623AB7" Foreground="White"/>
+            <TextBlock x:Name="cityTemp" TextAlignment="Center" HorizontalAlignment="Center" Height="36" Margin="0,88,0,0" Text="2.3 C" TextWrapping="Wrap" VerticalAlignment="Top" Width="144" FontSize="24" FontFamily="Bahnschrift" Foreground="White" Grid.Row="1"/>
+            <TextBlock x:Name="cityTempName" TextAlignment="Center" HorizontalAlignment="Center" Height="26" Grid.Row="1" Text="Helsinki" TextWrapping="Wrap" VerticalAlignment="Top" Width="134" FontFamily="Agency FB" Foreground="White" FontSize="14" Margin="0,73,0,0"/>
+            <TextBlock x:Name="cityTempClouds" TextAlignment="Center" HorizontalAlignment="Center" Height="25" Margin="0,117,0,0" Grid.Row="1" Text="BROKEN CLOUDS" TextWrapping="Wrap" VerticalAlignment="Top" Width="56" FontFamily="Agency FB" Foreground="White" FontStyle="Normal" FontSize="10"/>
+            <Image x:Name="weatherIMG" HorizontalAlignment="Left" Height="29" Margin="107,84,0,0" Grid.Row="1" VerticalAlignment="Top" Width="40"/>
+
 
 
 

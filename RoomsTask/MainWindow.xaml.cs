@@ -57,7 +57,7 @@ namespace RoomsTask
             clock.Interval = new TimeSpan(0, 0, 1);
 
             clock.Start();
-            test();
+            WeatherApp();
 
 
 
@@ -501,7 +501,7 @@ namespace RoomsTask
         //Weather API CALL - finnish soon
 
 
-        public void test()
+        public void WeatherApp()
         {
             HttpClient client = new HttpClient();
 
@@ -516,7 +516,14 @@ namespace RoomsTask
             {
                 // Parse the response body.
                 var dataObjects = response.Content.ReadAsAsync<Weather>().Result;  //Make sure to add a reference to System.Net.Http.Formatting.dll
-                MessageBox.Show(dataObjects.main.toCelsius().ToString());
+                cityTemp.Text = dataObjects.main.toCelsius().ToString("N2") + "°C";
+                cityTempName.Text = dataObjects.name;
+                cityTempClouds.Text = dataObjects.weather[0].description.ToString().ToUpper();
+
+                //Image source
+                string packUri = $"http://openweathermap.org/img/wn/{ dataObjects.weather[0].icon}.png";
+                weatherIMG.Source = new ImageSourceConverter().ConvertFromString(packUri) as ImageSource;
+               
             }
             else
             {
