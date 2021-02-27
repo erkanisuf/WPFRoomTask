@@ -1,5 +1,3 @@
-# WPFRoomTask
-<br />
-Room tasks simulator . 
-<br />
+# WPFRoomTask simulator
+
 ![](WPFRoomTaskIMG.jpg)
