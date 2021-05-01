@@ -24,6 +24,8 @@ using System.IO;
 using System.Net.Http;
 using Newtonsoft.Json;
 using System.Net.Http.Headers;
+using System.Reflection;
+using Path = System.IO.Path;
 
 namespace RoomsTask
 {
@@ -350,7 +352,7 @@ namespace RoomsTask
             e.Handled = regex.IsMatch(e.Text);
         }
 
-        //STYLE THIS SECTION
+        
         private void updateHouseTemperature(object sender, RoutedEventArgs e) {
 
 
@@ -477,7 +479,8 @@ namespace RoomsTask
         // Log saving 
         public void  saveToLogs()
         {
-            string filePath = @"C:\Users\Erko\source\repos\RoomProject\RoomProject\logs.txt";
+            /*string filePath = @"C:\Users\Erko\source\repos\RoomProject\RoomProject\logs.txt";*/
+            string filePath =  $@"{System.IO.Directory.GetCurrentDirectory()}\logs.txt";
             List<string> loglist = new List<string>();
             loglist = File.ReadAllLines(filePath).ToList();
             DateTime localDate = DateTime.Now;

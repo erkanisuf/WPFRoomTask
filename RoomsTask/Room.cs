@@ -4,7 +4,7 @@ using System.Text;
 
 namespace RoomsTask
 {
-    class Room
+   public class Room
     {
         public bool light { get;set; }
         public double lightPower { get; set; }

@@ -5,7 +5,7 @@ using System.Windows.Threading;
 
 namespace RoomsTask
 {
-    class Sauna
+    public class Sauna
     {
 
         DispatcherTimer timerTempUp = new DispatcherTimer();
