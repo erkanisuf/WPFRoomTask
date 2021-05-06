@@ -15,7 +15,7 @@ namespace RoomsTask
         
 
     }
-    class Main
+    public class Main
     {
         public double temp { get; set; }
         

@@ -1,6 +1,7 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using RoomsTask;
 using System;
+using System.Windows.Threading;
 
 namespace TestProject1
 {
@@ -83,6 +84,37 @@ namespace TestProject1
             var result = testsauna.getSaunaTemp(); // method that returns temp of sauna
             Assert.AreEqual(15, result, "Sauna temperature error");
         }
+        [TestMethod]
+        // Tests if Sauna is turned oFF
+        public void Sauna_TimerUP()
+        {
+            Sauna testsauna = new Sauna();
+            testsauna.setSaunaTemp(15);
+            for (int i = 0; i < 10; i++)
+            {
+                testsauna.saunaOn();
+            }
+              // Loop simulates Datetimer (f.ex in 10 seconds temp will increase with +5C , saunaOn method increases by 0.5)
+            
+            var result = testsauna.getSaunaTemp(); // method that returns temp of sauna
+            Assert.AreEqual(20, result, "Sauna timer temp INCREMENT");
+        }
+        [TestMethod]
+        // Tests if Sauna is turned oFF
+        public void Sauna_TimerDOWN()
+        {
+            Sauna testsauna = new Sauna();
+            testsauna.setSaunaTemp(30);
+            int roomTemp = 25; // Simulates room`s temp;
+            for (int i = 0; i < 10; i++)
+            {
+                testsauna.saunaOff(roomTemp);
+            }
+            // Loop simulates Datetimer , saunaOff decrements by -1 , if its equal to room temp it doesnt drecrement more )
+
+            var result = testsauna.getSaunaTemp(); // method that returns temp of sauna
+            Assert.AreEqual(25, result, "Sauna timer temp DECREMENT");
+        }
     }
     [TestClass]
     public class ThermosClassTest {
@@ -97,6 +129,19 @@ namespace TestProject1
             // Assert
             var result = testthermos.getTemperature(); // method that returns temp of Thermos
             Assert.AreEqual(25, result, "Thermostemperature error");
+        }
+    }
+    [TestClass]
+    public class CelsiusClass
+    {
+        [TestMethod]
+        // Tests if Sauna is turned oFF
+        public void Celsius_Converter()
+        {
+            Main temp = new Main();
+            temp.temp = 293.15; // Kelvin temp
+           var result =  temp.toCelsius();
+            Assert.AreEqual(20, result, "Celsius converter");
         }
     }
 }
